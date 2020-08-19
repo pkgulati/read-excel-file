@@ -1,5 +1,5 @@
 {
-  "name": "read-excel-file",
+  "name": "@pkgulati/read-excel-file",
   "version": "4.0.6",
   "description": "Read `*.xlsx` files in a browser or Node.js. Parse to JSON with a strict schema.",
   "module": "index.js",
