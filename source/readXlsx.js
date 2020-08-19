@@ -207,12 +207,15 @@ function Cell(cellNode, sheet, xml, values, styles, properties, options) {
       // XLSX has no specific format for dates.
       // Sometimes a date can be heuristically detected.
       // https://github.com/catamphetamine/read-excel-file/issues/3#issuecomment-395770777
+      // TODO pkg 
       const style = styles[parseInt(cellNode.getAttribute('s') || 0)]
-      if ((style.numberFormat.id >= 14 && style.numberFormat.id <= 22) ||
-        (style.numberFormat.id >= 45 && style.numberFormat.id <= 47) ||
-        (options.dateFormat && style.numberFormat.template === options.dateFormat) ||
-        (options.smartDateParser !== false && style.numberFormat.template && isDateTemplate(style.numberFormat.template))) {
+      if (style && style.numberFormat) {
+        if ((style.numberFormat.id >= 14 && style.numberFormat.id <= 22) ||
+          (style.numberFormat.id >= 45 && style.numberFormat.id <= 47) ||
+         (options.dateFormat && style.numberFormat.template === options.dateFormat) ||
+           (options.smartDateParser !== false && style.numberFormat.template && isDateTemplate(style.numberFormat.template))) {
         value = parseDate(value, properties)
+        }
       }
       break
   }
